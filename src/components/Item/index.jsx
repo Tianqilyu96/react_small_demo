@@ -17,6 +17,13 @@ export default class Item extends Component {
     };
   };
 
+  //delete the todo item, No currying
+  handleDelete = (id) => {
+    if (window.confirm("Are you sure?")) {
+      this.props.deleteTodo(id);
+    }
+  };
+
   render() {
     const { id, name, done } = this.props;
     const { mouse } = this.state;
@@ -36,6 +43,9 @@ export default class Item extends Component {
         </label>
         <button
           className="btn btn-danger"
+          onClick={() => {
+            this.handleDelete(id);
+          }}
           style={{ display: mouse ? "inline-flex" : "none" }}
         >
           Delete
