@@ -8,6 +8,7 @@ import "./App.css";
 //定义及暴露组件app组件
 export default class App extends Component {
   //Initialise state
+  //状态在哪里，操作状态的方法就在哪里
   state = {
     todos: [
       { id: "1", name: "Coding", done: true },

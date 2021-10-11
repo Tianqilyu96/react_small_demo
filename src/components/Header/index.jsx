@@ -1,7 +1,13 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./index.css";
 
 export default class Header extends Component {
+  //add props validation
+  static propTypes = {
+    addTodo: PropTypes.func.isRequired,
+  };
+
   //bind event handler
   handleKeyUp = (event) => {
     const { keyCode, target } = event;
