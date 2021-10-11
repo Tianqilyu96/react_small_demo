@@ -10,9 +10,9 @@ export default class App extends Component {
   //Initialise state
   state = {
     todos: [
-      { id: '1', name: "Coding", done: true },
-      { id: '2', name: "Have Fun", done: true },
-      { id: '3', name: "Sleeping", done: false },
+      { id: "1", name: "Coding", done: true },
+      { id: "2", name: "Have Fun", done: true },
+      { id: "3", name: "Sleeping", done: false },
     ],
   };
   //父组件数据传给子组件-直接将state中的数据通过props传到子组件
@@ -22,10 +22,24 @@ export default class App extends Component {
   addTodo = (name) => {
     let { todos } = this.state;
     let todo = { id: nanoid(), name: name, done: false };
-    console.log(todo)
+    console.log(todo);
     todos.push(todo);
 
     this.setState({ todos });
+  };
+
+  //add checked function, pass it to item
+  checkTodo = (id, checked) => {
+    const { todos } = this.state;
+    let newTodos = todos.map((el) => {
+      if (el.id === id) {
+        return { ...el, done: checked };
+      }
+      else{
+        return el;
+      }
+    });
+    this.setState({todos:newTodos})
   };
 
   render() {
@@ -34,7 +48,7 @@ export default class App extends Component {
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTodo={this.addTodo} />
-          <List todos={todos} />
+          <List checkTodo={this.checkTodo} todos={todos} />
           <Footer />
         </div>
       </div>

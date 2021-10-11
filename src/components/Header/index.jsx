@@ -7,6 +7,7 @@ export default class Header extends Component {
     const { keyCode, target } = event;
     if (keyCode !== 13) return;
     //if press enter, call addTodo function
+    //if content is empaty, alert
     if (target.value.trim() === "") {
       alert("Content can not be empaty!");
       return;

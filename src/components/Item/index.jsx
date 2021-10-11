@@ -2,15 +2,42 @@ import React, { Component } from "react";
 import "./index.css";
 
 export default class Item extends Component {
+  state = { mouse: false };
+  //查看鼠标是否移入item
+  handleMouse = (flag) => {
+    return () => {
+      this.setState({ mouse: flag });
+    };
+  };
+
+  //如果改变checkbox就会调用app中的checkTodo改变app中的state
+  handleCheck = (id) => {
+    return (event) => {
+      this.props.checkTodo(id, event.target.checked);
+    };
+  };
+
   render() {
-    const { name, done } = this.props;
+    const { id, name, done } = this.props;
+    const { mouse } = this.state;
     return (
-      <li>
+      <li
+        style={{ backgroundColor: mouse ? "lightgray" : "lightblue" }}
+        onMouseEnter={this.handleMouse(true)}
+        onMouseLeave={this.handleMouse(false)}
+      >
         <label>
-          <input type="checkbox" defaultChecked={done} />
+          <input
+            type="checkbox"
+            defaultChecked={done}
+            onChange={this.handleCheck(id)}
+          />
           <span>{name}</span>
         </label>
-        <button className="btn btn-danger" style={{ display: "none" }}>
+        <button
+          className="btn btn-danger"
+          style={{ display: mouse ? "inline-flex" : "none" }}
+        >
           Delete
         </button>
       </li>
