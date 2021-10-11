@@ -60,6 +60,15 @@ export default class App extends Component {
     this.setState({ todos: newTodos });
   };
 
+  //check all items
+  checkAll = (flag) => {
+    const { todos } = this.state;
+    const newTodos = todos.map((el) => {
+      return { ...el, done: flag };
+    });
+    this.setState({ todos: newTodos });
+  };
+
   render() {
     const { todos } = this.state;
     return (
@@ -71,7 +80,7 @@ export default class App extends Component {
             deleteTodo={this.deleteTodo}
             todos={todos}
           />
-          <Footer todos={todos} deleteFinished={this.deleteFinished} />
+          <Footer todos={todos} deleteFinished={this.deleteFinished} checkAll={this.checkAll} />
         </div>
       </div>
     );

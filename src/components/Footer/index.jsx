@@ -16,20 +16,31 @@ export default class Footer extends Component {
     }
   };
 
+  //handle the checkbox checking action
+  handleCheck = (event) => {
+    this.props.checkAll(event.target.checked);
+  };
+
   render() {
     const { todos } = this.props;
 
-    let conpleteNum = todos.filter((el) => {
+    let completeNum = todos.filter((el) => {
       return el.done === true;
     }).length;
 
     return (
       <div className="todo-footer">
         <label>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={(event) => {
+              this.handleCheck(event);
+            }}
+            checked={completeNum === todos.length}
+          />
         </label>
         <span>
-          <span>Completed {conpleteNum}</span> / {todos.length}
+          <span>Completed {completeNum}</span> / {todos.length}
         </span>
         <button className="btn btn-danger" onClick={() => this.handleDelete()}>
           Deleted Finished
