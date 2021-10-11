@@ -33,16 +33,16 @@ export default class Footer extends Component {
         <label>
           <input
             type="checkbox"
-            onChange={(event) => {
-              this.handleCheck(event);
-            }}
+            onChange={
+              this.handleCheck
+            }
             checked={completeNum === todos.length}
           />
         </label>
         <span>
           <span>Completed {completeNum}</span> / {todos.length}
         </span>
-        <button className="btn btn-danger" onClick={() => this.handleDelete()}>
+        <button className="btn btn-danger" onClick={this.handleDelete}>
           Deleted Finished
         </button>
       </div>
