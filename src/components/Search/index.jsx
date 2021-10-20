@@ -10,13 +10,16 @@ export default class Search extends Component {
     const {
       inputBox: { value: text },
     } = this;
+    //change isFirst before send state
+    this.props.setAppState({isFirst:false, isLoading:true});
+
+    //send request
     axios
       .get(`http://localhost:3000/search/users?q=${text}`)
       .then((response) => {
-        console.log('request success',response.data);
-        this.props.saveUsers(response.data.items);
+        this.props.setAppState({users:response.data.items,isLoading:false});
       })
-      .catch((error) => console.log(error));
+      .catch((error) => this.props.setAppState({err:error}));
   };
   render() {
     return (
