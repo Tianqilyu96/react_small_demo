@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PubSub from "pubsub-js";
 import axios from "axios";
 
 export default class Search extends Component {
@@ -11,19 +10,17 @@ export default class Search extends Component {
     const {
       inputBox: { value: text },
     } = this;
-    //change isFirst/isLoading and publish
-    PubSub.publish('State Data',{isFirst:false,isLoading:true})
+    //change isFirst before send state
+    this.props.setAppState({isFirst:false, isLoading:true});
 
     //send request
     axios
       .get(`http://localhost:3000/search/users?q=${text}`)
       .then((response) => {
-        PubSub.publish('State Data',{users:response.data.items,isLoading:false})
+        this.props.setAppState({users:response.data.items,isLoading:false});
       })
-      .catch((error) => PubSub.publish('State Data',{err:error}));
+      .catch((error) => this.props.setAppState({err:error}));
   };
-  
-
   render() {
     return (
       <section className="jumbotron">

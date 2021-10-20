@@ -1,20 +1,10 @@
 import React, { Component } from "react";
-import PubSub from "pubsub-js";
 import Card from "../Card";
 import "./index.css";
 
 export default class List extends Component {
-  state = { users: [], isFirst: true, isLoading: false, err: "" };
-
-  //初始化subscribe
-  componentDidMount() {
-    PubSub.subscribe("State Data", (msg, stateObj) => {
-      this.setState(stateObj);
-    });
-  }
-
   render() {
-    const { users, isLoading, isFirst, err } = this.state;
+    const { users, isLoading, isFirst, err } = this.props;
     return (
       <div className="row">
         {isFirst ? (
@@ -22,7 +12,7 @@ export default class List extends Component {
         ) : isLoading ? (
           <h2>Loading......</h2>
         ) : err ? (
-          <h2 style={{ color: "red" }}>{err.message}</h2>
+          <h2 style={{color:'red'}}>{err.message}</h2>
         ) : (
           users.map((user) => {
             const { login, avatar_url, html_url, id } = user;
