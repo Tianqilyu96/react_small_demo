@@ -10,11 +10,11 @@ export default class Search extends Component {
     const {
       inputBox: { value: text },
     } = this;
-    console.log(text);
     axios
       .get(`http://localhost:3000/search/users?q=${text}`)
       .then((response) => {
-        console.log(response.data);
+        console.log('request success',response.data);
+        this.props.saveUsers(response.data.items);
       })
       .catch((error) => console.log(error));
   };
