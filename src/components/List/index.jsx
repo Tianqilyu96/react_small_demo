@@ -8,9 +8,13 @@ export default class List extends Component {
 
   //初始化subscribe
   componentDidMount() {
-    PubSub.subscribe("State Data", (msg, stateObj) => {
+    this.token = PubSub.subscribe("State Data", (msg, stateObj) => {
       this.setState(stateObj);
     });
+  }
+
+  componentWillUnmount(){
+    PubSub.unsubscribe(this.token)
   }
 
   render() {
