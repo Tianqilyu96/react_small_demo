@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import MyNavLink from "./components/MyNavLink"
 
 export default class App extends Component {
   render() {
@@ -24,13 +25,9 @@ export default class App extends Component {
 
             {/* React中用路由链接切换组件--Link/NavLink 改变path-不刷新页面*/}
             {/* Navlink 中的activeClassName 可以设置点击的样式 */}
-
-            <NavLink activeClassName="active" className="list-group-item" to="/about">
-              About
-            </NavLink>
-            <NavLink activeClassName="active" className="list-group-item" to="/home">
-              Home
-            </NavLink>
+            {/* 封装Navlink使代码简洁 */}
+            <MyNavLink to="/home">Home</MyNavLink>
+            <MyNavLink to="/about">About</MyNavLink>
           </div>
           <div className="col-xs-6">
             <div className="panel">
