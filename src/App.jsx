@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { NavLink, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import MyNavLink from "./components/MyNavLink"
+import MyNavLink from "./components/MyNavLink";
 
 export default class App extends Component {
   render() {
@@ -34,8 +34,11 @@ export default class App extends Component {
               <div className="panel-body">
                 {/* 注册路由 当path改变 component也改变，路由组件要放到pages*/}
                 {/* 三个props history/location/match */}
-                <Route path="/about" component={About} />
-                <Route path="/home" component={Home} />
+                {/* Switch组件让route只匹配一次path，如果有同路径的components只会显示第一个，提高了效率 */}
+                <Switch>
+                  <Route path="/about" component={About} />
+                  <Route path="/home" component={Home} />
+                </Switch>
               </div>
             </div>
           </div>
