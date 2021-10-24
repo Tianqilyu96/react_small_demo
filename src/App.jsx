@@ -26,8 +26,9 @@ export default class App extends Component {
             {/* React中用路由链接切换组件--Link/NavLink 改变path-不刷新页面*/}
             {/* Navlink 中的activeClassName 可以设置点击的样式 */}
             {/* 封装Navlink使代码简洁 */}
+            {/* about 仍然可以显示, 因为模糊匹配 */}
             <MyNavLink to="/home">Home</MyNavLink>
-            <MyNavLink to="/about">About</MyNavLink>
+            <MyNavLink to="/about/a/b">About</MyNavLink>
           </div>
           <div className="col-xs-6">
             <div className="panel">
@@ -35,9 +36,10 @@ export default class App extends Component {
                 {/* 注册路由 当path改变 component也改变，路由组件要放到pages*/}
                 {/* 三个props history/location/match */}
                 {/* Switch组件让route只匹配一次path，如果有同路径的components只会显示第一个，提高了效率 */}
+                {/* set exact match exact/ exact={true}*/}
                 <Switch>
                   <Route path="/about" component={About} />
-                  <Route path="/home" component={Home} />
+                  <Route exact={true} path="/home" component={Home} />
                 </Switch>
               </div>
             </div>
