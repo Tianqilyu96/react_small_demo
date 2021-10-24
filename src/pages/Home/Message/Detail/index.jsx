@@ -9,7 +9,15 @@ const seedData = [
 export default class Detail extends Component {
   render() {
     //   接收params参数
-    const { id, title } = this.props.match.params;
+    // const { id, title } = this.props.match.params;
+
+    //接收search参数
+    const { search } = this.props.location;
+    const params = new URLSearchParams(search);
+    const id = params.get("id");
+    const title = params.get("title");
+    console.log(id,title)
+
     let findObj = seedData.find((el) => {
       return el.id === id;
     });
