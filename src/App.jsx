@@ -36,11 +36,11 @@ export default class App extends Component {
                 {/* 注册路由 当path改变 component也改变，路由组件要放到pages*/}
                 {/* 三个props history/location/match */}
                 {/* Switch组件让route只匹配一次path，如果有同路径的components只会显示第一个，提高了效率 */}
-                {/* set exact match exact/ exact={true}*/}
+                {/* set exact match exact/ exact={true} -不要随意开启，开启会无法匹配二级路由*/}
                 {/* Redirect 放在最后，如果都匹配不上则去redirect里的默认path */}
                 <Switch>
-                  <Route path="/about" component={About} />
-                  <Route exact={true} path="/home" component={Home} />
+                  <Route exact path="/about/a/b" component={About} />
+                  <Route path="/home" component={Home} />
                   <Redirect to="/home" />
                 </Switch>
               </div>
