@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import MyNavLink from "./components/MyNavLink";
@@ -37,9 +37,11 @@ export default class App extends Component {
                 {/* 三个props history/location/match */}
                 {/* Switch组件让route只匹配一次path，如果有同路径的components只会显示第一个，提高了效率 */}
                 {/* set exact match exact/ exact={true}*/}
+                {/* Redirect 放在最后，如果都匹配不上则去redirect里的默认path */}
                 <Switch>
                   <Route path="/about" component={About} />
                   <Route exact={true} path="/home" component={Home} />
+                  <Redirect to="/home" />
                 </Switch>
               </div>
             </div>
