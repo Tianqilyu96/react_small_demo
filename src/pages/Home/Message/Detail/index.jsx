@@ -9,7 +9,7 @@ const seedData = [
 export default class Detail extends Component {
   render() {
     //   接收params参数
-    // const { id, title } = this.props.match.params;
+    const { id, title } = this.props.match.params;
 
     //接收search参数
     // const { search } = this.props.location;
@@ -18,7 +18,7 @@ export default class Detail extends Component {
     // const title = params.get("title");
     
     //接收state参数
-    const{id, title} = this.props.location.state || {}
+    // const{id, title} = this.props.location.state || {}
    
 
     let findObj = seedData.find((el) => {
