@@ -3,7 +3,9 @@ import { withRouter } from "react-router-dom";
 
 class Header extends Component {
   render() {
-    return <div></div>;
+    return <div>AASDNWUD
+        <button onClick={()=>{this.props.history.goBack()}}>GO Back</button>
+    </div>;
   }
 }
 

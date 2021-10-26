@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Detail from "./Detail";
 import { Link, Route } from "react-router-dom";
+import {Button} from "antd";
+import "antd/dist/antd.css"
 
 export default class Message extends Component {
   state = {
@@ -33,13 +35,13 @@ export default class Message extends Component {
                 <Link to={`/home/message/detail/${el.id}/${el.title}`}>
                   {el.title}</Link>
                   &nbsp;
-                  <button onClick={() => this.pushShow(el.id, el.title)}>
+                  <Button type="primary" onClick={() => this.pushShow(el.id, el.title)}>
                     Push
-                  </button>
+                  </Button>
                   &nbsp;
-                  <button onClick={() => this.replaceShow(el.id, el.title)}>
+                  <Button type="default" onClick={() => this.replaceShow(el.id, el.title)}>
                     Replace
-                  </button>
+                  </Button>
                 
                 {/* 向路由组件传递search参数 类似于AJAX中的query */}
                 {/* <Link to={`/home/message/detail/?id=${el.id}&title=${el.title}`}>
