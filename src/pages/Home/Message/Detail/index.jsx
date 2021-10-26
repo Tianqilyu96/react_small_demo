@@ -12,15 +12,18 @@ export default class Detail extends Component {
     // const { id, title } = this.props.match.params;
 
     //接收search参数
-    const { search } = this.props.location;
-    const params = new URLSearchParams(search);
-    const id = params.get("id");
-    const title = params.get("title");
-    console.log(id,title)
+    // const { search } = this.props.location;
+    // const params = new URLSearchParams(search);
+    // const id = params.get("id");
+    // const title = params.get("title");
+    
+    //接收state参数
+    const{id, title} = this.props.location.state || {}
+   
 
     let findObj = seedData.find((el) => {
       return el.id === id;
-    });
+    }) || {};
     return (
       <ul>
         <li>ID:{id}</li>

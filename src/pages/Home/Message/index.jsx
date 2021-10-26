@@ -18,12 +18,23 @@ export default class Message extends Component {
           {messageArr.map((el) => {
             return (
               <li key={el.id}>
-                  {/* 向路由组件传递params参数 */}
+                {/* 向路由组件传递params参数 */}
                 {/* <Link to={`/home/message/detail/${el.id}/${el.title}`}>
                   {el.title}
                 </Link> */}
                 {/* 向路由组件传递search参数 类似于AJAX中的query */}
-                <Link to={`/home/message/detail/?id=${el.id}&title=${el.title}`}>
+                {/* <Link to={`/home/message/detail/?id=${el.id}&title=${el.title}`}>
+                  {el.title}
+                </Link> */}
+                {/* 向路由组件传递state参数--不会在地址栏中出现 */}
+                {/* replace 替换历史记录-不同于push，倒不回去 */}
+                <Link
+                  replace
+                  to={{
+                    pathname: "/home/message/detail",
+                    state: { id: el.id, title: el.title },
+                  }}
+                >
                   {el.title}
                 </Link>
               </li>
@@ -34,6 +45,8 @@ export default class Message extends Component {
         {/* 声明接收params参数-detail可以收到 */}
         {/* <Route path="/home/message/detail/:id/:title" component={Detail} /> */}
         {/* search参数无需声明接收 */}
+        {/* <Route path="/home/message/detail" component={Detail} /> */}
+        {/* state参数无需接受 */}
         <Route path="/home/message/detail" component={Detail} />
       </div>
     );
